@@ -1,8 +1,22 @@
-// é¢è¯•é¢˜7ï¼šé‡å»ºäºŒå‰æ ‘
-// é¢˜ç›®ï¼šè¾“å…¥æŸäºŒå‰æ ‘çš„å‰åºéå†å’Œä¸­åºéå†çš„ç»“æœï¼Œè¯·é‡å»ºå‡ºè¯¥äºŒå‰æ ‘ã€‚å‡è®¾è¾“
-// å…¥çš„å‰åºéå†å’Œä¸­åºéå†çš„ç»“æœä¸­éƒ½ä¸å«é‡å¤çš„æ•°å­—ã€‚ä¾‹å¦‚è¾“å…¥å‰åºéå†åºåˆ—{1,
-// 2, 4, 7, 3, 5, 6, 8}å’Œä¸­åºéå†åºåˆ—{4, 7, 2, 1, 5, 3, 8, 6}ï¼Œåˆ™é‡å»ºå‡º
-// å›¾2.6æ‰€ç¤ºçš„äºŒå‰æ ‘å¹¶è¾“å‡ºå®ƒçš„å¤´ç»“ç‚¹ã€‚
+/*******************************************************************
+Copyright(c) 2016, Harry He
+All rights reserved.
+
+Distributed under the BSD license.
+(See accompanying file LICENSE.txt at
+https://github.com/zhedahht/CodingInterviewChinese2/blob/master/LICENSE.txt)
+*******************************************************************/
+
+//==================================================================
+// ¡¶½£Ö¸Offer¡ª¡ªÃûÆóÃæÊÔ¹Ù¾«½²µäĞÍ±à³ÌÌâ¡·´úÂë
+// ×÷Õß£ººÎº£ÌÎ
+//==================================================================
+
+// ÃæÊÔÌâ7£ºÖØ½¨¶ş²æÊ÷
+// ÌâÄ¿£ºÊäÈëÄ³¶ş²æÊ÷µÄÇ°Ğò±éÀúºÍÖĞĞò±éÀúµÄ½á¹û£¬ÇëÖØ½¨³ö¸Ã¶ş²æÊ÷¡£¼ÙÉèÊä
+// ÈëµÄÇ°Ğò±éÀúºÍÖĞĞò±éÀúµÄ½á¹ûÖĞ¶¼²»º¬ÖØ¸´µÄÊı×Ö¡£ÀıÈçÊäÈëÇ°Ğò±éÀúĞòÁĞ{1,
+// 2, 4, 7, 3, 5, 6, 8}ºÍÖĞĞò±éÀúĞòÁĞ{4, 7, 2, 1, 5, 3, 8, 6}£¬ÔòÖØ½¨³ö
+// Í¼2.6ËùÊ¾µÄ¶ş²æÊ÷²¢Êä³öËüµÄÍ·½áµã¡£
 
 #include "..\Utilities\BinaryTree.h"
 #include <exception>
@@ -25,7 +39,7 @@ BinaryTreeNode* ConstructCore
     int* startInorder, int* endInorder
 )
 {
-    // å‰åºéå†åºåˆ—çš„ç¬¬ä¸€ä¸ªæ•°å­—æ˜¯æ ¹ç»“ç‚¹çš„å€¼
+    // Ç°Ğò±éÀúĞòÁĞµÄµÚÒ»¸öÊı×ÖÊÇ¸ù½áµãµÄÖµ
     int rootValue = startPreorder[0];
     BinaryTreeNode* root = new BinaryTreeNode();
     root->m_nValue = rootValue;
@@ -39,7 +53,7 @@ BinaryTreeNode* ConstructCore
             throw std::exception("Invalid input.");
     }
 
-    // åœ¨ä¸­åºéå†ä¸­æ‰¾åˆ°æ ¹ç»“ç‚¹çš„å€¼
+    // ÔÚÖĞĞò±éÀúÖĞÕÒµ½¸ù½áµãµÄÖµ
     int* rootInorder = startInorder;
     while(rootInorder <= endInorder && *rootInorder != rootValue)
         ++ rootInorder;
@@ -51,13 +65,13 @@ BinaryTreeNode* ConstructCore
     int* leftPreorderEnd = startPreorder + leftLength;
     if(leftLength > 0)
     {
-        // æ„å»ºå·¦å­æ ‘
+        // ¹¹½¨×ó×ÓÊ÷
         root->m_pLeft = ConstructCore(startPreorder + 1, leftPreorderEnd, 
             startInorder, rootInorder - 1);
     }
     if(leftLength < endPreorder - startPreorder)
     {
-        // æ„å»ºå³å­æ ‘
+        // ¹¹½¨ÓÒ×ÓÊ÷
         root->m_pRight = ConstructCore(leftPreorderEnd + 1, endPreorder,
             rootInorder + 1, endInorder);
     }
@@ -65,7 +79,7 @@ BinaryTreeNode* ConstructCore
     return root;
 }
 
-// ====================æµ‹è¯•ä»£ç ====================
+// ====================²âÊÔ´úÂë====================
 void Test(char* testName, int* preorder, int* inorder, int length)
 {
     if(testName != nullptr)
@@ -94,7 +108,7 @@ void Test(char* testName, int* preorder, int* inorder, int length)
     }
 }
 
-// æ™®é€šäºŒå‰æ ‘
+// ÆÕÍ¨¶ş²æÊ÷
 //              1
 //           /     \
 //          2       3  
@@ -111,7 +125,7 @@ void Test1()
     Test("Test1", preorder, inorder, length);
 }
 
-// æ‰€æœ‰ç»“ç‚¹éƒ½æ²¡æœ‰å³å­ç»“ç‚¹
+// ËùÓĞ½áµã¶¼Ã»ÓĞÓÒ×Ó½áµã
 //            1
 //           / 
 //          2   
@@ -130,7 +144,7 @@ void Test2()
     Test("Test2", preorder, inorder, length);
 }
 
-// æ‰€æœ‰ç»“ç‚¹éƒ½æ²¡æœ‰å·¦å­ç»“ç‚¹
+// ËùÓĞ½áµã¶¼Ã»ÓĞ×ó×Ó½áµã
 //            1
 //             \ 
 //              2   
@@ -149,7 +163,7 @@ void Test3()
     Test("Test3", preorder, inorder, length);
 }
 
-// æ ‘ä¸­åªæœ‰ä¸€ä¸ªç»“ç‚¹
+// Ê÷ÖĞÖ»ÓĞÒ»¸ö½áµã
 void Test4()
 {
     const int length = 1;
@@ -159,7 +173,7 @@ void Test4()
     Test("Test4", preorder, inorder, length);
 }
 
-// å®Œå…¨äºŒå‰æ ‘
+// ÍêÈ«¶ş²æÊ÷
 //              1
 //           /     \
 //          2       3  
@@ -174,13 +188,13 @@ void Test5()
     Test("Test5", preorder, inorder, length);
 }
 
-// è¾“å…¥ç©ºæŒ‡é’ˆ
+// ÊäÈë¿ÕÖ¸Õë
 void Test6()
 {
     Test("Test6", nullptr, nullptr, 0);
 }
 
-// è¾“å…¥çš„ä¸¤ä¸ªåºåˆ—ä¸åŒ¹é…
+// ÊäÈëµÄÁ½¸öĞòÁĞ²»Æ¥Åä
 void Test7()
 {
     const int length = 7;
