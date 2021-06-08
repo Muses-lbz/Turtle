@@ -4,7 +4,7 @@
 // 大于k的格子。例如，当k为18时，机器人能够进入方格(35, 37)，因为3+5+3+7=18。
 // 但它不能进入方格(35, 38)，因为3+5+3+8=19。请问该机器人能够到达多少个格子？
 
-#include <cstdio>
+#include <stdio.h>
 
 int movingCountCore(int threshold, int rows, int cols, int row, int col, bool* visited);
 bool check(int threshold, int rows, int cols, int row, int col, bool* visited);
