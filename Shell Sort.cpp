@@ -1,6 +1,6 @@
-﻿#define _CRT_SECURE_NO_WARNINGS
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
-#include<stdlib.h>
+#include <stdlib.h>
 #include <malloc.h>
 
 void shellSort(int* a, int len); // 函数声明
