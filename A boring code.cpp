@@ -10,7 +10,7 @@ int main()
 	int seed = rand()%2;
 	if (seed == 0)
 	{
-		char str[50] = {"不要和愚蠢的人发生争执！" };
+		char str[50] = {"不要和的人发生争执！" };
 	}
 	else
 	{
